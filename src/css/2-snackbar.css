@@ -1,0 +1,97 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 30px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+.label-delay {
+  display: flex;
+  flex-direction: column;
+}
+
+label,
+legend {
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+input[type='number'] {
+  width: 360px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  padding: 8px 16px;
+  outline: transparent;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+input[type='number']:hover {
+  border-color: #000000;
+  cursor: pointer;
+}
+
+input[type='number']:focus,
+input[type='number']:active {
+  border-color: #4e75ff;
+}
+
+fieldset {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 360px;
+  padding: 24px 48px;
+  padding-bottom: 8px;
+  margin-bottom: 32px;
+
+  /* text-align: center; */
+  display: flex;
+  gap: 48px;
+  justify-content: space-between;
+}
+
+fieldset:hover {
+  border-color: #000000;
+}
+
+input[type='radio'] {
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  outline: transparent;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  cursor: pointer;
+  /* border-radius: 14px;
+  width: 12px;
+  height: 12px; */
+}
+
+input[type='radio']:focus,
+input[type='radio']:active {
+  border-color: #4e75ff;
+}
+
+button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 360px;
+  height: 40px;
+  outline: transparent;
+  border: none;
+  background-color: #4e75ff;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #6c8cff;
+}
