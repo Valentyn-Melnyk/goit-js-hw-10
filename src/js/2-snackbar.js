@@ -39,14 +39,15 @@ const rejectedPromise = delay => {
 
 const formSubmit = event => {
   event.preventDefault();
+  const delay = document.querySelector('[name="delay"]').value;
+  const state = document.querySelector('[name="state"]:checked').value;
 
   const promise = new Promise((resolve, reject) => {
-    const delay = document.querySelector('[name="delay"]').value;
-    const state = document.querySelector('[name="state"]:checked').value;
-
-    if (state === 'fulfilled') resolve(fulfilledPromise(delay));
-    else reject(rejectedPromise(delay));
+    if (state === 'fulfilled') resolve(fulfilledPromise);
+    else reject(rejectedPromise);
   });
+
+  promise.then(callback => callback(delay)).catch(callback => callback(delay));
 
   form.reset();
 };
