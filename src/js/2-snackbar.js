@@ -42,7 +42,7 @@ const formSubmit = event => {
 
   const promise = new Promise((resolve, reject) => {
     const delay = document.querySelector('[name="delay"]').value;
-    const state = document.querySelector('input[name="state"]:checked').value;
+    const state = document.querySelector('[name="state"]:checked').value;
 
     if (state === 'fulfilled') resolve(fulfilledPromise(delay));
     else reject(rejectedPromise(delay));
