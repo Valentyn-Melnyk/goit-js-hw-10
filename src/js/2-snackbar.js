@@ -8,16 +8,14 @@ import octagon from '../img/octagon.svg';
 
 const form = document.querySelector('.form');
 
-// варіант new Promise
-
 const showMessage = (title, message, backgroundColor, iconUrl) => {
   // частково короткі властивості
   iziToast.show({
     title,
     titleColor: 'white',
     message,
-    backgroundColor,
     messageColor: 'white',
+    backgroundColor,
     closeOnEscape: true,
     position: 'topRight',
     iconUrl,
@@ -25,77 +23,41 @@ const showMessage = (title, message, backgroundColor, iconUrl) => {
   });
 };
 
-const fulfilledPromise = delay => {
-  setTimeout(() => {
-    showMessage(`OK`, `Fulfilled promise in ${delay}ms`, 'green', check2circle);
-  }, delay);
-};
-
-const rejectedPromise = delay => {
-  setTimeout(() => {
-    showMessage(`ERROR`, `Rejected promise in ${delay}ms`, 'red', octagon);
-  }, delay);
-};
-
 const formSubmit = event => {
   event.preventDefault();
-  const delay = document.querySelector('[name="delay"]').value;
-  const state = document.querySelector('[name="state"]:checked').value;
 
   const promise = new Promise((resolve, reject) => {
-    if (state === 'fulfilled') resolve(fulfilledPromise);
-    else reject(rejectedPromise);
+    const delay = Number(document.querySelector('input[name="delay"]').value);
+    const state = document.querySelector('input[name="state"]:checked').value;
+
+    setTimeout(() => {
+      if (state === 'fulfilled') {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay);
   });
 
-  promise.then(callback => callback(delay)).catch(callback => callback(delay));
+  promise
+    .then(delay => {
+      showMessage(
+        'OK',
+        `Fulfilled promise in ${delay}ms`,
+        '#59A10D',
+        check2circle
+      );
+    })
+    .catch(delay => {
+      showMessage(
+        'ERROR',
+        `Rejected promise in ${delay}ms`,
+        '#EF4040',
+        octagon
+      );
+    });
 
   form.reset();
 };
 
 form.addEventListener('submit', formSubmit);
-
-// варіант просто
-// const fulfilledPromise = delay => {
-//   setTimeout(() => {
-//     iziToast.show({
-//       title: `OK`,
-//       titleColor: 'white',
-//       message: `Fulfilled promise in ${delay}ms`,
-//       backgroundColor: 'green',
-//       messageColor: 'white',
-//       closeOnEscape: true,
-//       position: 'topRight',
-//       iconUrl: check2circle,
-//       iconColor: 'white',
-//     });
-//   }, delay);
-// };
-// const rejectedPromise = delay => {
-//   setTimeout(() => {
-//     iziToast.show({
-//       title: `ERROR`,
-//       titleColor: 'white',
-//       message: `Rejected promise in ${delay}ms`,
-//       backgroundColor: 'red',
-//       messageColor: 'white',
-//       closeOnEscape: true,
-//       position: 'topRight',
-//       iconUrl: octagon,
-//       iconColor: 'white',
-//     });
-//   }, delay);
-// };
-
-// const formSubmit = event => {
-//   event.preventDefault();
-
-//   const delay = document.querySelector('[name="delay"]').value;
-//   const state = document.querySelector('input[name="state"]:checked').value;
-
-//   if (state === 'fulfilled') fulfilledPromise(delay);
-//   else rejectedPromise(delay);
-
-//   form.reset();
-// };
-
-// form.addEventListener('submit', formSubmit);
